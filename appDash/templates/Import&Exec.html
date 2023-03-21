@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Importation et Execution</title>
+</head>
+<body>
+    <h1>Mettre à jours la BD</h1>
+    <form method="POST" name="execute">
+        {% csrf_token %}
+        <input type="submit" name="execute" value="Update">
+    </form>
+    <h1>Importer un fichier XLSX</h1>
+    <form method="POST" enctype="multipart/form-data" name="import">
+        {% csrf_token %}
+        <label for="csv_file">Sélectionnez un fichier Excel :</label>
+        <input type="file" name="csv_file" accept=".xlsx">
+        <br><br>
+        <input type="submit" name="import" value="Importer">
+    </form>
+</body>
+</html>

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Test MongoDB</title>
-</head>
-<body>
-    <h1>Test MongoDB</h1>
-    <p>Premier document de la collection "Essais_rand" :</p>
-    <pre>{{ data }}</pre>
-</body>
+  <head>
+    <title>Mon graphique des phases</title>
+  </head>
+  <body>
+    <h1>Mon graphique des phases</h1>
+    {% load static %}
+    <img src="{{% static 'plot/Essais_rand.png' % }}" alt="Mon image PNG">
+  </body>
 </html>
