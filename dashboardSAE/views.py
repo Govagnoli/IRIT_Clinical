@@ -111,4 +111,47 @@ def recupIvermectin(request):
     client.close()
     return render(request, 'test_mongoDb_Eliott.html', {'df_concat': df_concat})
 
+def plot_genres(db_name, collection_names):
+    # Connexion à la base de données MongoDB
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["S4"]
+    # Initialisation des variables
+    genders = ['All', 'Female', 'Male']
+    counts = {gender: 0 for gender in genders}
+    
+    # Récupération des données des collections et comptage des phases
+    for collection_name in collection_names:
+        collection = db[collection_name]
+        for gender in genders:
+            count = collection.count_documents({'gender': gender})
+            counts[gender] += count
+            
+    
+        # Création du graphique en barres
+        x_pos = [i for i, _ in enumerate(genders)]
+        plt.bar(x_pos, [counts[gender] for gender in genders], color='blue')
+        plt.xlabel("Genres")
+        plt.ylabel("Nombre d'essais")
+        plt.title(f"Nombre d'essais par genre (All, Female, Male)")
+        plt.xticks(x_pos, genders)
+    
+        # Ajout du nombre de count sur chaque barre
+        for i, count in enumerate(counts.values()):
+            plt.text(x=i, y=count, s=str(count), ha='center', va='bottom')
+        
+        # Vérification de l'existence du répertoire "plot"
+        if not os.path.exists('plot'):
+            os.makedirs('plot')
+    
+        # Enregistrement du graphique en tant que fichier PNG
+        plot_path = os.path.join(settings.PLOT_ROOT, 'essais_genres.png')
+        plt.savefig(plot_path)
 
+        # Fermeture de la figure
+        plt.close()
+
+def def_param_Genres(request):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["S4"]
+    collection_names = ["Essais_rand", "Essais_obs"]
+    plot_genres(db.name, collection_names)
