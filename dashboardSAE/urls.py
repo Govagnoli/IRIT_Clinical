@@ -21,11 +21,13 @@ from .views import execute_exe
 from .views import recupIvermectin
 from .views import import_exec
 from .views import requestPNG
+from .views import def_param_Genres
 
 urlpatterns = [
     #path('ma-vue/', my_view, name='my_view'),
     #path('executable/', execute_exe, name='executable'),
     path('test-mongodb/', requestPNG, name='test_mongodb'),
+    path('def_param_Genres/', def_param_Genres, name='def_param_Genres'),
     #path('test-mongodb-Eliott/', recupIvermectin, name='test-mongodb-Eliott'),
     path('import_exec/', import_exec, name='import_exec'),
 ]
