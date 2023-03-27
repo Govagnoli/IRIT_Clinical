@@ -1,0 +1,39 @@
+{% extends "partials/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  body {
+    background-color: #fff;
+  }
+</style>
+<div class="container-fluid">
+  <h1>Corpus des Essais</h1>
+  <hr>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/filtrePhase.css' %}">
+  <form method="GET">
+    <select name="phase">
+      <option value="All">Tous</option>
+      <option value="Phase 0">Phase 0</option>
+      <option value="Phase 1">Phase 1</option>
+      <option value="Phase 2">Phase 2</option>
+      <option value="Phase 3">Phase 3</option>
+      <option value="Phase 4">Phase 4</option>
+      <option value="Phase 1/2">Phase 1/2</option>
+      <option value="Phase 2/3">Phase 2/3</option>
+    </select>
+    <button type="submit">Filtrer</button>
+  </form>
+  <form action="{% url 'corpus' %}" method="get">
+    <label for="search">Recherche ID:</label>
+    <input type="text" id="search" name="search">
+    <input type="submit" value="Rechercher">
+  </form>
+  <div>
+    {{ graph|safe }}
+  </div>
+</div>
+
+{% endblock %}

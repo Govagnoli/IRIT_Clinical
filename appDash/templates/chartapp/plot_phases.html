@@ -1,0 +1,15 @@
+{% include "partials/base.html" %}
+{% include "partials/filtre.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Graphiques{% endblock %}</title>
+</head>
+<body>
+    <br>
+    {{ graph|safe }}
+</body>
+</html>
+{% endblock %}

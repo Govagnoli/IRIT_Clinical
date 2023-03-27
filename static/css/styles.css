@@ -1,0 +1,55 @@
+/* Réinitialisation des styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.highlight {
+  color: yellow;
+}
+
+/* Style de fond pour l'ensemble du document */
+body {
+  background-color: #f5f5f5;
+}
+
+/* Style de la barre de navigation */
+.navMenu {
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: #fff;
+}
+
+/* Style de la liste de navigation */
+.navMenu ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navMenu ul li {
+  margin-right: 1rem;
+}
+
+.navMenu ul li:last-child {
+  margin-right: 0;
+}
+
+/* Style du point décoratif */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+/* Style du contenu de la page */
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}

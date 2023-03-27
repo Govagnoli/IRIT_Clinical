@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Requête client{% endblock %}</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        function updateFormAction() {
+            var select = document.getElementById('collection');
+            var selectedValue = select.value;
+            var form = document.getElementById('myForm');
+            form.action = '/' + selectedValue + '/';
+        }
+    </script>
+</head>
+<body>
+    <h1>Graphiques</h1>
+    <form method="get" id="myForm" action="/publication/">
+        <label for="collection">Choisir une collection:</label>
+        <select name="collection" id="collection" onchange="updateFormAction()">
+            <option value="publication" selected>Publication du mois</option>
+            <option value="plot_genres">Essais par genre</option>
+            <option value="plot_phases">Nombre d'essais en phase 1 / 2 / 3 / 4</option>
+            <option value="Concepts-frequents">Top 10 des concepts</option>
+            <option value="Interventions_drugs">intervention drugs</option>
+            <option value="Ivermectin">Ivermectin</option>
+        </select>
+        <button type="submit">Afficher</button>
+    </form>
+</body>
+</html>

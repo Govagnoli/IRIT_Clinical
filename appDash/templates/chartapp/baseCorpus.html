@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChartApp</title>
+
+  <!-- CSS pour DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
+  <!-- CSS pour Plotly -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.plot.ly/plotly-2.2.0.min.css">
+
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <!-- JavaScript pour DataTables -->
+  <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+  <!-- JavaScript pour Plotly -->
+  <script type="text/javascript" src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- Activation de DataTables -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('table').DataTable();
+    });
+  </script>
+
+</body>
+</html>

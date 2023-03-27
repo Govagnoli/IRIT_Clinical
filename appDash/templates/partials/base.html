@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navMenu">
+        <ul>
+            <li><a href="{% url 'home' %}" class="highlight">Accueil</a></li>
+            <li><a href="{% url 'import_exec' %}" class="highlight">Importer/Mettre à jour la BD</a></li>
+            <li><a href="{% url 'corpus' %}" class="highlight">Corpus</a></li>
+        </ul>
+        <div class="dot"></div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -15,20 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import my_view
-from .views import test_mongodb
-from .views import execute_exe
-from .views import recupIvermectin
-from .views import import_exec
-from .views import requestPNG
-from .views import def_param_Genres
+from . import views
 
 urlpatterns = [
-    #path('ma-vue/', my_view, name='my_view'),
-    #path('executable/', execute_exe, name='executable'),
-    path('test-mongodb/', requestPNG, name='test_mongodb'),
-    path('def_param_Genres/', def_param_Genres, name='def_param_Genres'),
-    #path('test-mongodb-Eliott/', recupIvermectin, name='test-mongodb-Eliott'),
-    path('import_exec/', import_exec, name='import_exec'),
+    path('', views.plot_phases, name='home'),
+    path('plot_genres/', views.plot_genres, name='genre'),
+    path('plot_phases/', views.plot_phases, name='genre'),
+    path('Ivermectin/', views.recupIvermectin, name='test-mongodb-Eliott'),
+    path('import_exec/', views.import_exec, name='import_exec'),
+    path('publication/', views.PubliPlusAbstract, name='publi'),
+    path('corpus/', views.corpus, name='corpus'),
+    path('Concepts-frequents/', views.ExtraireConcepts, name='publi'),
+    path('Interventions_drugs/', views.LabelDrugs, name='publi')
 ]
 
