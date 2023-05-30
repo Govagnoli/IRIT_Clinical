@@ -7,6 +7,8 @@ import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objs as go
 
+CONNEXION_BDD = ""
+
 # Create your views here.
 def import_exec(request):
     if request.method == 'POST' and 'import' in request.POST:
@@ -31,7 +33,7 @@ def import_exec(request):
 def plot_phases(request):
     selected_collection = request.GET.get('collection', 'Essais_rand')
     collection_names = ["Essais_rand", "Essais_obs"]
-    client = MongoClient("mongodb+srv://IRIT:tkZkvXtroUerXHzN@irit.emriopq.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
     
     phases = ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4']
@@ -97,7 +99,7 @@ def plot_phases(request):
 def plot_genres(request):
     selected_collection = request.GET.get('collection', 'Essais_rand')
     collection_names = ["Essais_rand", "Essais_obs"]
-    client = MongoClient("mongodb+srv://IRIT:tkZkvXtroUerXHzN@irit.emriopq.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
     
     genders = ['All', 'Female', 'Male']
@@ -160,7 +162,7 @@ def plot_genres(request):
     return render(request, 'chartapp/plot_phases.html', {'graph': graph, 'collection_names': collection_names, 'selected_collection': selected_collection})
 
 def recupIvermectin(request):
-    client = MongoClient("mongodb+srv://IRIT:tkZkvXtroUerXHzN@irit.emriopq.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
     collections = [db["Essais_obs"], db["Essais_rand"], db["Pub_obs"], db["Pub_rand"]]
     req = { "title": { "$regex": "Ivermectin", "$options": "i" } }
@@ -180,7 +182,7 @@ def recupIvermectin(request):
 
 #Publications du mois courant (ex mai 2020) triées par score altmetric décroissant et départagées par citations décroissantes
 def PubliPlusAbstract(request):
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
     collections = [db["Pub_obs"], db["Pub_rand"]]
     df_concat = pd.DataFrame()
@@ -223,7 +225,7 @@ def PubliPlusAbstract(request):
 
 def ExtraireConcepts(request):
     try:
-        client = MongoClient("mongodb+srv://IRIT:tkZkvXtroUerXHzN@irit.emriopq.mongodb.net/?retryWrites=true&w=majority")
+        client = MongoClient(CONNEXION_BDD)
         db = client["S4"]
         collection = db["vueConcept"] 
     except pymongo.errors.ConnectionFailure as e:
@@ -251,7 +253,7 @@ def ExtraireConcepts(request):
     return render(request, 'chartApp/Concepts-frequents.html', {'dfConcepts': dfConcepts.to_html()})
 
 def LabelDrugs(request):
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
     collections = [db["Essais_obs"], db["Essais_rand"]]
     req = {"interventions": { "$regex": "Drug", "$options": "i" }}
@@ -272,7 +274,7 @@ def LabelDrugs(request):
     return render(request, 'chartApp/Interventions_drugs.html', {'df_concat': df_concat.to_html})
 
 def corpus(request, columns=None):
-    client = MongoClient("mongodb+srv://IRIT:tkZkvXtroUerXHzN@irit.emriopq.mongodb.net/?retryWrites=true&w=majority")
+    client = MongoClient(CONNEXION_BDD)
     db = client["S4"]
 
     collection_rand = db['Essais_rand']
